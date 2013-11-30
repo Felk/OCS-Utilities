@@ -56,17 +56,17 @@ public abstract class Packet {
 
 	public abstract String getName();
 
-	private static void registerPacket(Class<? extends Packet> packet, int id) {
-		packetIdMap.put(packet, id);
+	private static void registerPacket(Class<? extends Packet> packet) {
+		packetIdMap.put(packet, packetIdMap.size());
 		packets.add(packet);
 	}
 
 	static {
-		registerPacket(PacketConnectionInfo.class, 0);//has to be at position 0
+		registerPacket(PacketConnectionInfo.class);//has to be at position 0
 		
-		registerPacket(PacketLogin.class, 1);
-		registerPacket(PacketLoginFailed.class, 2);
-		registerPacket(PacketChat.class, 10);
-		registerPacket(PacketChatBroadcast.class, 11);
+		registerPacket(PacketLogin.class);
+		registerPacket(PacketLoginFailed.class);
+		registerPacket(PacketChat.class);
+		registerPacket(PacketChatBroadcast.class);
 	}
 }
