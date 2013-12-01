@@ -27,7 +27,7 @@ public class PacketUserlist extends Packet {
 
 	@Override
 	public String getName() {
-		return "UserlistNew";
+		return "Userlist";
 	}
 
 }
