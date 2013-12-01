@@ -25,7 +25,7 @@ public class PacketLoginUsername extends Packet {
 
 	@Override
 	public String getName() {
-		return "Login";
+		return "LoginUsername";
 	}
 
 }
