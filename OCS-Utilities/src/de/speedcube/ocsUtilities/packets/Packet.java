@@ -68,6 +68,7 @@ public abstract class Packet {
 		registerPacket(PacketLoginPassword.class);
 		registerPacket(PacketLoginSalt.class);
 		registerPacket(PacketLoginFailed.class);
+		registerPacket(PacketUserlist.class);
 		registerPacket(PacketChat.class);
 		registerPacket(PacketChatBroadcast.class);
 	}
