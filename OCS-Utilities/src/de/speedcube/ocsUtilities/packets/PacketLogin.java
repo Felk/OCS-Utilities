@@ -1,10 +1,12 @@
 package de.speedcube.ocsUtilities.packets;
 
 import de.speedcube.ocsUtilities.DNFile.DNFile;
+import de.speedcube.ocsUtilities.security.Sha2;
 
 public class PacketLogin extends Packet {
 	public String username;
 	public String password;
+	public String salt;
 
 	@Override
 	public void pack() {
@@ -12,7 +14,8 @@ public class PacketLogin extends Packet {
 		//username = GameOptions.instance.getOption("playerName");
 
 		data.addNode("username", username);
-		data.addNode("password", password);
+		String encrypted_password = Sha2.hashPassword(password, salt);
+		data.addNode("password", encrypted_password);
 		
 		packedData = data.toByteArray();
 	}
