@@ -9,8 +9,8 @@ public class PacketChatBroadcast extends Packet {
 	@Override
 	public void pack() {
 		data = new DNFile("");
-		data.addNode("text", text);
-		data.addNode("id", userId);
+		data.addNode("a", text);
+		data.addNode("b", userId);
 		packedData = data.toByteArray();
 	}
 
@@ -18,8 +18,8 @@ public class PacketChatBroadcast extends Packet {
 	public void unpack() {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
-		text = data.getString("text");
-		userId = data.getInt("id");
+		text = data.getString("a");
+		userId = data.getInt("b");
 	}
 
 	@Override

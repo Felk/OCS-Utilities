@@ -10,7 +10,7 @@ public class PacketLoginSalt extends Packet {
 		data = new DNFile("");
 		//username = GameOptions.instance.getOption("playerName");
 
-		data.addNode("salt", salt);
+		data.addNode("a", salt);
 		
 		packedData = data.toByteArray();
 	}
@@ -20,7 +20,7 @@ public class PacketLoginSalt extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		salt = data.getString("salt");
+		salt = data.getString("a");
 	}
 
 	@Override

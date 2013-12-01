@@ -9,7 +9,7 @@ public class PacketConnectionInfo extends Packet {
 	public void pack() {
 		data = new DNFile("");
 
-		data.addNode("version", version);
+		data.addNode("a", version);
 
 		packedData = data.toByteArray();
 	}
@@ -19,7 +19,7 @@ public class PacketConnectionInfo extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		version = data.getString("version");
+		version = data.getString("a");
 	}
 
 	@Override

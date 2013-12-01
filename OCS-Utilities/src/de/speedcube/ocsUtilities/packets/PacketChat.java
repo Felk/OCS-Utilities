@@ -8,15 +8,19 @@ public class PacketChat extends Packet {
 	@Override
 	public void pack() {
 		data = new DNFile("");
-		data.addNode("text", text);
+		
+		data.addNode("a", text);
+		
 		packedData = data.toByteArray();
 	}
 
 	@Override
 	public void unpack() {
 		data = new DNFile("");
+		
 		data.fromByteArray(packedData);
-		text = data.getString("text");
+		
+		text = data.getString("a");
 	}
 
 	@Override

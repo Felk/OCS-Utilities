@@ -2,15 +2,16 @@ package de.speedcube.ocsUtilities.packets;
 
 import de.speedcube.ocsUtilities.DNFile.DNFile;
 
-public class PacketLoginFailed extends Packet {
-	public String msg;
+public class PacketRegistration extends Packet {
+	public String username;
+	public String password;
 
 	@Override
 	public void pack() {
 		data = new DNFile("");
-		//username = GameOptions.instance.getOption("playerName");
 
-		data.addNode("a", msg);
+		data.addNode("a", username);
+		data.addNode("b", username);
 		
 		packedData = data.toByteArray();
 	}
@@ -20,12 +21,13 @@ public class PacketLoginFailed extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		msg = data.getString("a");
+		username = data.getString("a");
+		password = data.getString("b");
 	}
 
 	@Override
 	public String getName() {
-		return "LoginFailed";
+		return "Registration";
 	}
 
 }

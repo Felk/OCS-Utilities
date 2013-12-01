@@ -10,8 +10,8 @@ public class PacketUserlist extends Packet {
 	public void pack() {
 		data = new DNFile("");
 
-		data.addNode("usernames", usernames);
-		data.addNode("userIds", userIds);
+		data.addNode("a", usernames);
+		data.addNode("b", userIds);
 		
 		packedData = data.toByteArray();
 	}
@@ -21,8 +21,8 @@ public class PacketUserlist extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		usernames = data.getStringArray("usernames");
-		userIds = data.getIntArray("userIds");
+		usernames = data.getStringArray("a");
+		userIds = data.getIntArray("b");
 	}
 
 	@Override

@@ -10,7 +10,7 @@ public class PacketLoginUsername extends Packet {
 		data = new DNFile("");
 		//username = GameOptions.instance.getOption("playerName");
 
-		data.addNode("username", username);
+		data.addNode("a", username);
 		
 		packedData = data.toByteArray();
 	}
@@ -20,7 +20,7 @@ public class PacketLoginUsername extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		username = data.getString("username");
+		username = data.getString("a");
 	}
 
 	@Override

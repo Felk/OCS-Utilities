@@ -12,7 +12,7 @@ public class PacketLoginPassword extends Packet {
 		data = new DNFile("");
 
 		String encrypted_password = Sha2.hashPassword(password, salt);
-		data.addNode("password", encrypted_password);
+		data.addNode("a", encrypted_password);
 		
 		packedData = data.toByteArray();
 	}
@@ -22,7 +22,7 @@ public class PacketLoginPassword extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		password = data.getString("password");
+		password = data.getString("a");
 	}
 
 	@Override
