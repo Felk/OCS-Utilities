@@ -1,16 +1,19 @@
 package de.speedcube.ocsUtilities.packets;
 
 import de.speedcube.ocsUtilities.DNFile.DNFile;
+import de.speedcube.ocsUtilities.security.Sha2;
 
-public class PacketConnectionInfo extends Packet {
-	public String version;
+public class PacketLoginPassword extends Packet {
+	public String password;
+	public String salt;
 
 	@Override
 	public void pack() {
 		data = new DNFile("");
 
-		data.addNode("version", version);
-
+		String encrypted_password = Sha2.hashPassword(password, salt);
+		data.addNode("password", encrypted_password);
+		
 		packedData = data.toByteArray();
 	}
 
@@ -19,12 +22,12 @@ public class PacketConnectionInfo extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		version = data.getString("version");
+		password = data.getString("password");
 	}
 
 	@Override
 	public String getName() {
-		return "ConnectionInfo";
+		return "LoginPassword";
 	}
 
 }

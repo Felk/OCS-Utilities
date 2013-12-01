@@ -2,15 +2,16 @@ package de.speedcube.ocsUtilities.packets;
 
 import de.speedcube.ocsUtilities.DNFile.DNFile;
 
-public class PacketConnectionInfo extends Packet {
-	public String version;
+public class PacketLoginSalt extends Packet {
+	public String salt;
 
 	@Override
 	public void pack() {
 		data = new DNFile("");
+		//username = GameOptions.instance.getOption("playerName");
 
-		data.addNode("version", version);
-
+		data.addNode("salt", salt);
+		
 		packedData = data.toByteArray();
 	}
 
@@ -19,12 +20,12 @@ public class PacketConnectionInfo extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		version = data.getString("version");
+		salt = data.getString("salt");
 	}
 
 	@Override
 	public String getName() {
-		return "ConnectionInfo";
+		return "LoginSalt";
 	}
 
 }
