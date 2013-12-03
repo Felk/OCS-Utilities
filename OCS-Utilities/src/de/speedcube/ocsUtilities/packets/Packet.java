@@ -71,6 +71,6 @@ public abstract class Packet {
 		registerPacket(PacketUserlist.class);
 		registerPacket(PacketChat.class);
 		registerPacket(PacketChatBroadcast.class);
-		registerPacket(PacketRegistration.class);
+		registerPacket(PacketRegistrationUsername.class);
 	}
 }
