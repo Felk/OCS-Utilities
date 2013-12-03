@@ -2,6 +2,7 @@ package de.speedcube.ocsUtilities.packets;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import de.speedcube.ocsUtilities.DNFile.DNFile;
 
@@ -60,6 +61,12 @@ public abstract class Packet {
 		packetIdMap.put(packet, packetIdMap.size());
 		packets.add(packet);
 	}
+	
+	public static void dumpIds() {
+		for (Map.Entry<Class<? extends Packet>, Integer> e: packetIdMap.entrySet()) {
+			System.out.println(e.getValue()+": "+e.getKey().getSimpleName());
+		}
+	}
 
 	static {
 		registerPacket(PacketConnectionInfo.class);//has to be at position 0
@@ -75,5 +82,8 @@ public abstract class Packet {
 		registerPacket(PacketRegistration.class);
 		registerPacket(PacketRegistrationError.class);
 		registerPacket(PacketRegistrationSuccess.class);
+		registerPacket(PacketLogout.class);
+		
+		//dumpIds();
 	}
 }
