@@ -64,7 +64,6 @@ public abstract class Packet {
 	static {
 		registerPacket(PacketConnectionInfo.class);//has to be at position 0
 		
-		registerPacket(PacketLogin.class);
 		registerPacket(PacketSalt.class);
 		registerPacket(PacketSaltGet.class);
 		registerPacket(PacketLogin.class);
