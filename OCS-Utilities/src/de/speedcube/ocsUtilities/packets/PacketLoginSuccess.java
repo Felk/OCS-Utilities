@@ -2,13 +2,12 @@ package de.speedcube.ocsUtilities.packets;
 
 import de.speedcube.ocsUtilities.DNFile.DNFile;
 
-public class PacketLoginUsername extends Packet {
+public class PacketLoginSuccess extends Packet {
 	public String username;
 
 	@Override
 	public void pack() {
 		data = new DNFile("");
-		//username = GameOptions.instance.getOption("playerName");
 
 		data.addNode("a", username);
 		
@@ -25,7 +24,7 @@ public class PacketLoginUsername extends Packet {
 
 	@Override
 	public String getName() {
-		return "LoginUsername";
+		return "LoginSuccess";
 	}
 
 }

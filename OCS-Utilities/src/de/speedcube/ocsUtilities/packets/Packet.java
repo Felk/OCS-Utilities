@@ -64,13 +64,17 @@ public abstract class Packet {
 	static {
 		registerPacket(PacketConnectionInfo.class);//has to be at position 0
 		
-		registerPacket(PacketLoginUsername.class);
-		registerPacket(PacketLoginPassword.class);
-		registerPacket(PacketLoginSalt.class);
-		registerPacket(PacketLoginFailed.class);
+		registerPacket(PacketLogin.class);
+		registerPacket(PacketSalt.class);
+		registerPacket(PacketSaltGet.class);
+		registerPacket(PacketLogin.class);
+		registerPacket(PacketLoginError.class);
+		registerPacket(PacketLoginSuccess.class);
 		registerPacket(PacketUserlist.class);
 		registerPacket(PacketChat.class);
 		registerPacket(PacketChatBroadcast.class);
-		registerPacket(PacketRegistrationUsername.class);
+		registerPacket(PacketRegistration.class);
+		registerPacket(PacketRegistrationError.class);
+		registerPacket(PacketRegistrationSuccess.class);
 	}
 }

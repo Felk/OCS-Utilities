@@ -2,7 +2,7 @@ package de.speedcube.ocsUtilities.packets;
 
 import de.speedcube.ocsUtilities.DNFile.DNFile;
 
-public class PacketLoginSalt extends Packet {
+public class PacketSalt extends Packet {
 	public String salt;
 
 	@Override
@@ -25,7 +25,7 @@ public class PacketLoginSalt extends Packet {
 
 	@Override
 	public String getName() {
-		return "LoginSalt";
+		return "Salt";
 	}
 
 }

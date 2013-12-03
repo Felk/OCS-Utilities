@@ -3,7 +3,7 @@ package de.speedcube.ocsUtilities.packets;
 import de.speedcube.ocsUtilities.DNFile.DNFile;
 import de.speedcube.ocsUtilities.security.Sha2;
 
-public class PacketRegistrationPassword extends Packet {
+public class PacketLogin extends Packet {
 	public String password;
 	public String salt;
 
@@ -27,7 +27,7 @@ public class PacketRegistrationPassword extends Packet {
 
 	@Override
 	public String getName() {
-		return "RegistrationPassword";
+		return "Login";
 	}
 
 }
