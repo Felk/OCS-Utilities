@@ -1,6 +1,7 @@
 package de.speedcube.ocsUtilities.packets;
 
 import de.speedcube.ocsUtilities.DNFile.DNFile;
+import de.speedcube.ocsUtilities.security.RandomString;
 import de.speedcube.ocsUtilities.security.Sha2;
 
 public class PacketRegistration extends Packet {
@@ -12,11 +13,12 @@ public class PacketRegistration extends Packet {
 	public void pack() {
 		data = new DNFile("");
 
+		salt = RandomString.getNew(20);
 		String encrypted_password = Sha2.hashPassword(password, salt);
 		data.addNode("a", encrypted_password);
 		data.addNode("b", username);
 		data.addNode("c", salt);
-		
+
 		packedData = data.toByteArray();
 	}
 
