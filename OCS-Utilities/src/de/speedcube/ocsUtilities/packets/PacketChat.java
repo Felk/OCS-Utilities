@@ -4,12 +4,14 @@ import de.speedcube.ocsUtilities.DNFile.DNFile;
 
 public class PacketChat extends Packet {
 	public String text;
+	public String channel;
 
 	@Override
 	public void pack() {
 		data = new DNFile("");
 		
 		data.addNode("a", text);
+		data.addNode("b", channel);
 		
 		packedData = data.toByteArray();
 	}
@@ -21,6 +23,7 @@ public class PacketChat extends Packet {
 		data.fromByteArray(packedData);
 		
 		text = data.getString("a");
+		channel = data.getString("b");
 	}
 
 	@Override
