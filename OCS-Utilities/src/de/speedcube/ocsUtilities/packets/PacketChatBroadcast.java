@@ -6,8 +6,6 @@ public class PacketChatBroadcast extends Packet {
 	public String text;
 	public String channel;
 	public int userId;
-	// Weil der Justin es so haben will:
-	public String username;
 	
 
 	@Override
@@ -16,7 +14,6 @@ public class PacketChatBroadcast extends Packet {
 		data.addNode("a", text);
 		data.addNode("b", channel);
 		data.addNode("c", userId);
-		data.addNode("d", username);
 		packedData = data.toByteArray();
 	}
 
@@ -27,7 +24,6 @@ public class PacketChatBroadcast extends Packet {
 		text = data.getString("a");
 		channel = data.getString("b");
 		userId = data.getInt("c");
-		username = data.getString("d");
 	}
 
 	@Override
