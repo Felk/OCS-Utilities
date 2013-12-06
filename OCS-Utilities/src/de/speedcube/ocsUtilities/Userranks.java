@@ -10,4 +10,17 @@ public class Userranks {
 	public static final int ADMIN = 4;
 	public static final int DEV = 5;
 
+	public static String getRankString(int id) {
+		switch(id) {
+		case GUEST: return "G";
+		case NORMAL: return "U";
+		case HIGH: return "U+";
+		case MOD: return "M";
+		case SMOD: return "M+";
+		case ADMIN: return "A";
+		case DEV: return "D";
+		}
+		return "";
+	}
+	
 }

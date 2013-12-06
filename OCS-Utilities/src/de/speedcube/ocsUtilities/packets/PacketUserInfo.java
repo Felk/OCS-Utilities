@@ -29,11 +29,12 @@ public class PacketUserInfo extends Packet {
 	}
 
 	@Override
-	public void unpack() {
+	public void unpack() throws MalformedPacketException {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
 		int[] userIDs = data.getIntArray("a");
+		if (userIDs == null) throw new MalformedPacketException();
 
 		for (int i = 0; i < userIDs.length; i++) {
 			DNFile file = new DNFile("");

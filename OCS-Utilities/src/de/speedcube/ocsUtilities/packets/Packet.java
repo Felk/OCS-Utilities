@@ -49,7 +49,7 @@ public abstract class Packet {
 		networkBuffer[7] = (byte) ((packetID & 0xff));
 	}
 
-	public abstract void unpack();
+	public abstract void unpack() throws MalformedPacketException;
 
 	public DNFile getData() {
 		return data;
