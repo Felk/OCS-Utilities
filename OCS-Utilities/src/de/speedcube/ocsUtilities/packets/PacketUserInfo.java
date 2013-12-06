@@ -53,7 +53,7 @@ public class PacketUserInfo extends Packet {
 
 	@Override
 	public String getName() {
-		return "Registration";
+		return "UserInfo";
 	}
 
 }
