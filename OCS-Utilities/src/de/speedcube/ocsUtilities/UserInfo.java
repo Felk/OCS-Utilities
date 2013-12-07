@@ -7,6 +7,7 @@ public class UserInfo {
 	public String username;
 	public int color;
 	public int rank;
+	public String status;
 
 	public UserInfo() {
 		userID = -1;
@@ -14,11 +15,12 @@ public class UserInfo {
 		color = 0xffffff;
 	}
 
-	public UserInfo(int userID, String username, int rank, int color) {
+	public UserInfo(int userID, String username, int rank, int color, String status) {
 		this.userID = userID;
 		this.username = username;
 		this.color = color;
 		this.rank = rank;
+		this.status = status;
 	}
 
 	public DNFile toDNFile() {
@@ -27,6 +29,7 @@ public class UserInfo {
 		file.addNode("name", username);
 		file.addNode("col", color);
 		file.addNode("rank", rank);
+		file.addNode("status", status);
 		return file;
 	}
 
@@ -35,6 +38,7 @@ public class UserInfo {
 		username = file.getString("name");
 		color = file.getInt("col");
 		rank = file.getInt("rank");
+		status = file.getString("status");
 	}
 
 	public static UserInfo fromDNFile(DNFile file) {
@@ -43,6 +47,7 @@ public class UserInfo {
 		info.username = file.getString("name");
 		info.color = file.getInt("col");
 		info.rank = file.getInt("rank");
+		info.status = file.getString("status");
 		return info;
 	}
 }
