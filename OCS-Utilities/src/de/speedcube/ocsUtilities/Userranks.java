@@ -12,13 +12,13 @@ public class Userranks {
 
 	public static String getRankString(int id) {
 		switch(id) {
-		case GUEST: return "G";
+		case GUEST: return "Guest";
 		case NORMAL: return "U";
 		case HIGH: return "U+";
 		case MOD: return "M";
 		case SMOD: return "M+";
 		case ADMIN: return "A";
-		case DEV: return "D";
+		case DEV: return "Dev";
 		}
 		return "";
 	}
