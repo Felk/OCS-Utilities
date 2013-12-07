@@ -319,7 +319,7 @@ public class DNFile {
 	public int[] getIntArray(String name) {
 		DNNode node = nodePath.getNodePath(name);
 		if (node == null) return null;
-		if (node.length >= 1) {
+		if (node.length >= 0) {
 			if (node.typ == DNHelper.INTEGER && node.value instanceof Integer[]) {
 				int[] tempIntAarray = new int[((Integer[]) node.value).length];
 				for (int i = 0; i < tempIntAarray.length; i++) {
@@ -345,7 +345,7 @@ public class DNFile {
 	public float[] getFloatArray(String name) {
 		DNNode node = nodePath.getNodePath(name);
 		if (node == null) return null;
-		if (node.length >= 1) {
+		if (node.length >= 0) {
 			if (node.typ == DNHelper.FLOAT && node.value instanceof Float[]) {
 				float[] tempFloatAarray = new float[((Float[]) node.value).length];
 				for (int i = 0; i < tempFloatAarray.length; i++) {
@@ -371,7 +371,7 @@ public class DNFile {
 	public double[] getDoubleArray(String name) {
 		DNNode node = nodePath.getNodePath(name);
 		if (node == null) return null;
-		if (node.length >= 1) {
+		if (node.length >= 0) {
 			if (node.typ == DNHelper.DOUBLE && node.value instanceof Double[]) {
 				double[] tempDoubleAarray = new double[((Double[]) node.value).length];
 				for (int i = 0; i < tempDoubleAarray.length; i++) {
@@ -397,7 +397,7 @@ public class DNFile {
 	public long[] getLongArray(String name) {
 		DNNode node = nodePath.getNodePath(name);
 		if (node == null) return null;
-		if (node.length >= 1) {
+		if (node.length >= 0) {
 			if (node.typ == DNHelper.LONG && node.value instanceof Long[]) {
 				long[] tempLongAarray = new long[((Long[]) node.value).length];
 				for (int i = 0; i < tempLongAarray.length; i++) {
@@ -423,7 +423,7 @@ public class DNFile {
 	public byte[] getByteArray(String name) {
 		DNNode node = nodePath.getNodePath(name);
 		if (node == null) return null;
-		if (node.length >= 1) {
+		if (node.length >= 0) {
 			if (node.typ == DNHelper.BYTE && node.value instanceof Byte[]) {
 				byte[] tempByteAarray = new byte[((Byte[]) node.value).length];
 				for (int i = 0; i < tempByteAarray.length; i++) {
@@ -449,7 +449,7 @@ public class DNFile {
 	public char[] getCharArray(String name) {
 		DNNode node = nodePath.getNodePath(name);
 		if (node == null) return null;
-		if (node.length >= 1) {
+		if (node.length >= 0) {
 			if (node.typ == DNHelper.CHAR && node.value instanceof Character[]) {
 				char[] tempCharacterAarray = new char[((Character[]) node.value).length];
 				for (int i = 0; i < tempCharacterAarray.length; i++) {
@@ -475,7 +475,7 @@ public class DNFile {
 	public boolean[] getBooleanArray(String name) {
 		DNNode node = nodePath.getNodePath(name);
 		if (node == null) return null;
-		if (node.length >= 1) {
+		if (node.length >= 0) {
 			if (node.typ == DNHelper.BOOLEAN && node.value instanceof Boolean[]) {
 				boolean[] tempBooleanAarray = new boolean[((Boolean[]) node.value).length];
 				for (int i = 0; i < tempBooleanAarray.length; i++) {

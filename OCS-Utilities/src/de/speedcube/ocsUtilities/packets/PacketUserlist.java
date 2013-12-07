@@ -10,16 +10,17 @@ public class PacketUserlist extends Packet {
 		data = new DNFile("");
 
 		data.addNode("b", userIds);
-		
+
 		packedData = data.toByteArray();
 	}
 
 	@Override
-	public void unpack() {
+	public void unpack() throws MalformedPacketException {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
 		userIds = data.getIntArray("b");
+		if (userIds == null) throw new MalformedPacketException();
 	}
 
 	@Override
