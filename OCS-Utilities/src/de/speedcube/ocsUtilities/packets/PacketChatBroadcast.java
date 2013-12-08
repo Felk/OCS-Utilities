@@ -26,7 +26,7 @@ public class PacketChatBroadcast extends Packet {
 		text = data.getString("a");
 		channel = data.getString("b");
 		userId = data.getInt("c");
-		timestamp = data.getInt("d");
+		timestamp = data.getLong("d");
 	}
 
 	@Override
