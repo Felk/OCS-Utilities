@@ -5,6 +5,10 @@ import de.speedcube.ocsUtilities.DNFile.DNFile;
 public class PacketRegistrationSuccess extends Packet {
 	public String username;
 
+	public PacketRegistrationSuccess() {
+		channel = LOGIN_PAGE_CHANNEL;
+	}
+	
 	@Override
 	public void pack() {
 		data = new DNFile("");

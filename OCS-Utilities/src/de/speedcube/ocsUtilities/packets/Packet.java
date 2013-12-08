@@ -17,6 +17,7 @@ public abstract class Packet {
 
 	public static final int DEFAULT_CHANNEL = 0;
 	public static final int CHAT_CHANNEL = 1;
+	public static final int LOGIN_PAGE_CHANNEL = 2;
 
 	protected static ArrayList<Class<? extends Packet>> packets = new ArrayList<Class<? extends Packet>>();
 	protected static HashMap<Class<? extends Packet>, Integer> packetIdMap = new HashMap<Class<? extends Packet>, Integer>();
@@ -61,16 +62,16 @@ public abstract class Packet {
 		packetIdMap.put(packet, packetIdMap.size());
 		packets.add(packet);
 	}
-	
+
 	public static void dumpIds() {
-		for (Map.Entry<Class<? extends Packet>, Integer> e: packetIdMap.entrySet()) {
-			System.out.println(e.getValue()+": "+e.getKey().getSimpleName());
+		for (Map.Entry<Class<? extends Packet>, Integer> e : packetIdMap.entrySet()) {
+			System.out.println(e.getValue() + ": " + e.getKey().getSimpleName());
 		}
 	}
 
 	static {
 		registerPacket(PacketConnectionInfo.class);//has to be at position 0
-		
+
 		registerPacket(PacketSalt.class);
 		registerPacket(PacketSaltGet.class);
 		registerPacket(PacketLogin.class);
@@ -84,7 +85,7 @@ public abstract class Packet {
 		registerPacket(PacketRegistrationError.class);
 		registerPacket(PacketRegistrationSuccess.class);
 		registerPacket(PacketLogout.class);
-		
+
 		//dumpIds();
 	}
 }

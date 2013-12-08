@@ -5,6 +5,10 @@ import de.speedcube.ocsUtilities.DNFile.DNFile;
 public class PacketRegistrationError extends Packet {
 	public int errNr;
 
+	public PacketRegistrationError() {
+		channel = LOGIN_PAGE_CHANNEL;
+	}
+	
 	@Override
 	public void pack() {
 		data = new DNFile("");
