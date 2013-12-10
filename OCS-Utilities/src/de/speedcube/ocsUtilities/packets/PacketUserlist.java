@@ -6,7 +6,7 @@ public class PacketUserlist extends Packet {
 	public int[] userIds;
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 
 		data.addNode("b", userIds);

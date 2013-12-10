@@ -10,7 +10,7 @@ public class PacketLoginError extends Packet {
 	}
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 		//username = GameOptions.instance.getOption("playerName");
 

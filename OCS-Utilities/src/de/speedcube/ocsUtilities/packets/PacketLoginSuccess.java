@@ -6,7 +6,7 @@ public class PacketLoginSuccess extends Packet {
 	public String username;
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 
 		data.addNode("a", username);

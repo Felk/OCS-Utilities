@@ -7,7 +7,7 @@ public class PacketChat extends Packet {
 	public String channel;
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 		
 		data.addNode("a", text);

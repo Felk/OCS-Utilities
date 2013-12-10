@@ -8,7 +8,7 @@ public class PacketLogin extends Packet {
 	public String salt;
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 
 		String encrypted_password = Sha2.hashPassword(password, salt);

@@ -6,7 +6,7 @@ public class PacketConnectionInfo extends Packet {
 	public String version;
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 
 		data.addNode("a", version);

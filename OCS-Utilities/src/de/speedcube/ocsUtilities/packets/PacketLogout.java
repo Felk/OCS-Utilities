@@ -10,7 +10,7 @@ public class PacketLogout extends Packet {
 	}
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 
 		data.addNode("a", msg);

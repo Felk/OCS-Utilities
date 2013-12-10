@@ -10,7 +10,7 @@ public class PacketChatBroadcast extends Packet {
 	
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 		data.addNode("a", text);
 		data.addNode("b", channel);

@@ -13,7 +13,7 @@ public abstract class Packet {
 	public byte[] networkBuffer;
 	public int packetID;
 	public int channel = DEFAULT_CHANNEL;
-	public boolean packed = false;
+	private boolean packed = false;
 
 	public static final int DEFAULT_CHANNEL = 0;
 	public static final int CHAT_CHANNEL = 1;
@@ -34,10 +34,10 @@ public abstract class Packet {
 		return packets.get(id);
 	}
 
-	public abstract void pack();
+	public abstract void packData();
 
-	public void packInNetworkBuffer() {
-		pack();
+	public void pack() {
+		packData();
 		networkBuffer = new byte[packedData.length + 8];
 		System.arraycopy(packedData, 0, networkBuffer, 8, packedData.length);
 		networkBuffer[0] = (byte) ((packedData.length & 0xff000000) >> 24);
@@ -49,7 +49,7 @@ public abstract class Packet {
 		networkBuffer[5] = (byte) ((packetID & 0xff0000) >> 16);
 		networkBuffer[6] = (byte) ((packetID & 0xff00) >> 8);
 		networkBuffer[7] = (byte) ((packetID & 0xff));
-		packed = true;
+		setPacked(true);
 	}
 
 	public abstract void unpack() throws MalformedPacketException;
@@ -69,6 +69,14 @@ public abstract class Packet {
 		for (Map.Entry<Class<? extends Packet>, Integer> e : packetIdMap.entrySet()) {
 			System.out.println(e.getValue() + ": " + e.getKey().getSimpleName());
 		}
+	}
+
+	public boolean isPacked() {
+		return packed;
+	}
+
+	public void setPacked(boolean packed) {
+		this.packed = packed;
 	}
 
 	static {

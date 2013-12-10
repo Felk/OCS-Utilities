@@ -6,7 +6,7 @@ public class PacketSalt extends Packet {
 	public String salt;
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 		//username = GameOptions.instance.getOption("playerName");
 

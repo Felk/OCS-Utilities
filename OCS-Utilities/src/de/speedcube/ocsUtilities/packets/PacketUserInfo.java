@@ -14,7 +14,7 @@ public class PacketUserInfo extends Packet {
 	}
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 
 		int[] userIDs = new int[userInfos.size()];

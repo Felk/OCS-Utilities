@@ -10,7 +10,7 @@ public class PacketRegistration extends Packet {
 	public String salt = "";
 
 	@Override
-	public void pack() {
+	public void packData() {
 		data = new DNFile("");
 
 		salt = RandomString.getNew(20);
