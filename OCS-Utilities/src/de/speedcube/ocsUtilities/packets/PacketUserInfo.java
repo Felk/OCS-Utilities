@@ -45,11 +45,6 @@ public class PacketUserInfo extends Packet {
 	}
 
 	public void addUserInfo(UserInfo userInfo) {
-		System.out.println("ADDING USERINFO ID: "+userInfo.userID);
-		System.out.println("ADDING USERINFO UN: "+userInfo.username);
-		System.out.println("ADDING USERINFO CL: "+userInfo.color);
-		System.out.println("ADDING USERINFO RA: "+userInfo.rank);
-		System.out.println("ADDING USERINFO ST: "+userInfo.status);
 		userInfos.add(userInfo);
 	}
 
