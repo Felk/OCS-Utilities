@@ -37,6 +37,7 @@ public abstract class Packet {
 	public abstract void pack();
 
 	public void packInNetworkBuffer() {
+		pack();
 		networkBuffer = new byte[packedData.length + 8];
 		System.arraycopy(packedData, 0, networkBuffer, 8, packedData.length);
 		networkBuffer[0] = (byte) ((packedData.length & 0xff000000) >> 24);
@@ -48,6 +49,7 @@ public abstract class Packet {
 		networkBuffer[5] = (byte) ((packetID & 0xff0000) >> 16);
 		networkBuffer[6] = (byte) ((packetID & 0xff00) >> 8);
 		networkBuffer[7] = (byte) ((packetID & 0xff));
+		packed = true;
 	}
 
 	public abstract void unpack() throws MalformedPacketException;
@@ -85,6 +87,7 @@ public abstract class Packet {
 		registerPacket(PacketRegistrationError.class);
 		registerPacket(PacketRegistrationSuccess.class);
 		registerPacket(PacketLogout.class);
+		registerPacket(PacketDisconnect.class);
 
 		//dumpIds();
 	}

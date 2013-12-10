@@ -11,8 +11,10 @@ public class UserInfo {
 
 	public UserInfo() {
 		userID = -1;
+		username = "ANONYMOUS";
 		rank = Userranks.GUEST;
 		color = 0xffffff;
+		status = "not logged in";
 	}
 
 	public UserInfo(int userID, String username, int rank, int color, String status) {
