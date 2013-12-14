@@ -4,16 +4,19 @@ import de.speedcube.ocsUtilities.DNFile.DNFile;
 
 public class PacketChatBroadcast extends Packet {
 	public String text;
-	public String channel;
+	public String chatChannel;
 	public int userId;
 	public long timestamp;
-	
+
+	public PacketChatBroadcast() {
+		channel = CHAT_CHANNEL;
+	}
 
 	@Override
 	public void packData() {
 		data = new DNFile("");
 		data.addNode("a", text);
-		data.addNode("b", channel);
+		data.addNode("b", chatChannel);
 		data.addNode("c", userId);
 		data.addNode("d", timestamp);
 		packedData = data.toByteArray();
@@ -24,7 +27,7 @@ public class PacketChatBroadcast extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 		text = data.getString("a");
-		channel = data.getString("b");
+		chatChannel = data.getString("b");
 		userId = data.getInt("c");
 		timestamp = data.getLong("d");
 	}
