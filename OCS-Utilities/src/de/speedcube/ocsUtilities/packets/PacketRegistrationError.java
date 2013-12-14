@@ -3,7 +3,7 @@ package de.speedcube.ocsUtilities.packets;
 import de.speedcube.ocsUtilities.DNFile.DNFile;
 
 public class PacketRegistrationError extends Packet {
-	public int errNr;
+	public String err;
 
 	public PacketRegistrationError() {
 		channel = LOGIN_PAGE_CHANNEL;
@@ -13,7 +13,7 @@ public class PacketRegistrationError extends Packet {
 	public void packData() {
 		data = new DNFile("");
 
-		data.addNode("a", errNr);
+		data.addNode("a", err);
 		
 		packedData = data.toByteArray();
 	}
@@ -23,7 +23,7 @@ public class PacketRegistrationError extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		errNr = data.getInt("a");
+		err = data.getString("a");
 	}
 
 	@Override
