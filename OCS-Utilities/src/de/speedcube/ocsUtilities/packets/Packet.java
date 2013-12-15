@@ -98,6 +98,7 @@ public abstract class Packet {
 		registerPacket(PacketDisconnect.class);
 		registerPacket(PacketChannelEnter.class);
 		registerPacket(PacketSystemMessage.class);
+		registerPacket(PacketProfileInfo.class);
 
 		//dumpIds();
 	}

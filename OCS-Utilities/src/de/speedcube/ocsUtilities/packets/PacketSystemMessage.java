@@ -4,6 +4,7 @@ import de.speedcube.ocsUtilities.DNFile.DNFile;
 
 public class PacketSystemMessage extends Packet {
 	public String msg;
+	public String[] values;
 	public long timestamp;
 
 	public PacketSystemMessage() {
@@ -15,6 +16,7 @@ public class PacketSystemMessage extends Packet {
 		data = new DNFile("");
 		data.addNode("a", msg);
 		data.addNode("b", timestamp);
+		data.addNode("c", values);
 		packedData = data.toByteArray();
 	}
 
@@ -24,6 +26,7 @@ public class PacketSystemMessage extends Packet {
 		data.fromByteArray(packedData);
 		msg = data.getString("a");
 		timestamp = data.getLong("b");
+		values = data.getStringArray("c");
 	}
 
 	@Override
