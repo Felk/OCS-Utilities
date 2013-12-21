@@ -104,6 +104,7 @@ public abstract class Packet {
 		registerPacket(PacketPartyList.class);
 		registerPacket(PacketPartyTime.class);
 		registerPacket(PacketPartyJoin.class);
+		registerPacket(PacketSound.class);
 
 		//dumpIds();
 	}
