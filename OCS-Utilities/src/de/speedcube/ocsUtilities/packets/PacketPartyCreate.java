@@ -3,7 +3,7 @@ package de.speedcube.ocsUtilities.packets;
 import de.speedcube.ocsUtilities.DNFile.DNFile;
 
 public class PacketPartyCreate extends Packet {
-	public int type;
+	public byte type;
 	public int rounds;
 	public int rounds_counting;
 	public String name;
@@ -27,7 +27,7 @@ public class PacketPartyCreate extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		type = data.getInt("a");
+		type = data.getByte("a");
 		rounds = data.getInt("b");
 		rounds_counting = data.getInt("c");
 		name = data.getString("d");
