@@ -105,6 +105,7 @@ public abstract class Packet {
 		registerPacket(PacketPartyTime.class);
 		registerPacket(PacketPartyJoin.class);
 		registerPacket(PacketSound.class);
+		registerPacket(PacketChannelWhisper.class);
 
 		//dumpIds();
 	}

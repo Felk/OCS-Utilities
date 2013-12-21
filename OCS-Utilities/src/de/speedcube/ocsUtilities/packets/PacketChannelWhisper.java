@@ -2,14 +2,14 @@ package de.speedcube.ocsUtilities.packets;
 
 import de.speedcube.ocsUtilities.DNFile.DNFile;
 
-public class PacketChannelEnter extends Packet {
-	public String chatChannel;
+public class PacketChannelWhisper extends Packet {
+	public int userID;
 
 	@Override
 	public void packData() {
 		data = new DNFile("");
 
-		data.addNode("a", chatChannel);
+		data.addNode("a", userID);
 
 		packedData = data.toByteArray();
 	}
@@ -19,13 +19,12 @@ public class PacketChannelEnter extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		chatChannel = data.getString("a");
-		if (chatChannel == null) throw new MalformedPacketException();
+		userID = data.getInt("a");
 	}
 
 	@Override
 	public String getName() {
-		return "ChannelEnter";
+		return "ChannelWhisper";
 	}
 
 }
