@@ -10,7 +10,7 @@ public class Userranks {
 	public static final int ADMIN = 4;
 	public static final int DEV = 5;
 
-	public static String getRankString(int id) {
+	public static String getString(int id) {
 		switch(id) {
 		case GUEST: return "Guest";
 		case NORMAL: return "U";

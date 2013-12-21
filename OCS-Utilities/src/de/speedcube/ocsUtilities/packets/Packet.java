@@ -99,6 +99,11 @@ public abstract class Packet {
 		registerPacket(PacketChannelEnter.class);
 		registerPacket(PacketSystemMessage.class);
 		registerPacket(PacketProfileInfo.class);
+		registerPacket(PacketPartyCreate.class);
+		registerPacket(PacketPartyData.class);
+		registerPacket(PacketPartyList.class);
+		registerPacket(PacketPartyTime.class);
+		registerPacket(PacketPartyJoin.class);
 
 		//dumpIds();
 	}

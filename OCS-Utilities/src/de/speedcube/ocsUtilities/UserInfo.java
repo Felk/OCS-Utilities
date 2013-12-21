@@ -16,6 +16,10 @@ public class UserInfo {
 		color = 0xffffff;
 		status = "not logged in";
 	}
+	
+	public String getHexColor() {
+		return String.format("%06X", (0xFFFFFF & color));
+	}
 
 	public UserInfo(int userID, String username, int rank, int color, String status) {
 		this.userID = userID;
