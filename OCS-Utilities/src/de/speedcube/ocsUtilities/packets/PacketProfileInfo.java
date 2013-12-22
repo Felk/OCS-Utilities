@@ -6,6 +6,8 @@ public class PacketProfileInfo extends Packet {
 
 	public int color;
 	public String status;
+	public int rank;
+	public String language;
 
 	@Override
 	public void packData() {

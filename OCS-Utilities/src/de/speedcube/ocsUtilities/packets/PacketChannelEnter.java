@@ -5,6 +5,10 @@ import de.speedcube.ocsUtilities.DNFile.DNFile;
 public class PacketChannelEnter extends Packet {
 	public String chatChannel;
 
+	public PacketChannelEnter() {
+		channel = CHAT_CHANNEL;
+	}
+
 	@Override
 	public void packData() {
 		data = new DNFile("");

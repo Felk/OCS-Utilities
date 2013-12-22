@@ -6,6 +6,8 @@ public class PacketSystemMessage extends Packet {
 	public String msg;
 	public String[] values;
 	public long timestamp;
+	public String chatChannel;
+	public boolean global;
 
 	public PacketSystemMessage() {
 		channel = CHAT_CHANNEL;
@@ -17,6 +19,8 @@ public class PacketSystemMessage extends Packet {
 		data.addNode("a", msg);
 		data.addNode("b", timestamp);
 		data.addNode("c", values);
+		data.addNode("d", chatChannel);
+		data.addNode("e", global);
 		packedData = data.toByteArray();
 	}
 
@@ -27,6 +31,8 @@ public class PacketSystemMessage extends Packet {
 		msg = data.getString("a");
 		timestamp = data.getLong("b");
 		values = data.getStringArray("c");
+		chatChannel = data.getString("d");
+		global = data.getBoolean("e");
 	}
 
 	@Override
