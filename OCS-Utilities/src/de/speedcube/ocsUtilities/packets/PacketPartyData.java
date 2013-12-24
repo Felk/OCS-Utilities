@@ -6,7 +6,7 @@ import de.speedcube.ocsUtilities.DNFile.DNFile;
 public class PacketPartyData extends Packet {
 	public int partyID;
 	public int ownerID;
-	public int type;
+	public byte type;
 	public int rounds;
 	public int rounds_counting;
 	public String name;
