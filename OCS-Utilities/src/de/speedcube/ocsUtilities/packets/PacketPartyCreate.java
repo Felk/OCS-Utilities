@@ -7,8 +7,12 @@ public class PacketPartyCreate extends Packet {
 	public int rounds;
 	public int rounds_counting;
 	public String name;
-	public String scramble;
+	public String scrambleType;
 
+	public PacketPartyCreate() {
+		channel = PARTY_CHANNEL;
+	}
+	
 	@Override
 	public void packData() {
 		data = new DNFile("");
@@ -17,7 +21,7 @@ public class PacketPartyCreate extends Packet {
 		data.addNode("b", rounds);
 		data.addNode("c", rounds_counting);
 		data.addNode("d", name);
-		data.addNode("e", scramble);
+		data.addNode("e", scrambleType);
 
 		packedData = data.toByteArray();
 	}
@@ -31,8 +35,8 @@ public class PacketPartyCreate extends Packet {
 		rounds = data.getInt("b");
 		rounds_counting = data.getInt("c");
 		name = data.getString("d");
-		scramble = data.getString("e");
-		if (scramble == null || name == null) throw new MalformedPacketException();
+		scrambleType = data.getString("e");
+		if (scrambleType == null || name == null) throw new MalformedPacketException();
 	}
 
 	@Override

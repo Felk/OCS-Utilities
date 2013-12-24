@@ -10,10 +10,15 @@ public class PacketPartyData extends Packet {
 	public int rounds;
 	public int rounds_counting;
 	public String name;
-	public String scramble;
+	public String scrambleType;
+	public String[] scrambles;
 	public PartyResultSet[] results;
 	public int state;
 
+	public PacketPartyData() {
+		channel = PARTY_CHANNEL;
+	}
+	
 	@Override
 	public void packData() {
 		data = new DNFile("");
@@ -40,11 +45,12 @@ public class PacketPartyData extends Packet {
 		data.addNode("d", rounds);
 		data.addNode("e", rounds_counting);
 		data.addNode("f", name);
-		data.addNode("g", scramble);
-		data.addNode("h", userIDs);
-		data.addNode("i", averages);
-		data.addNode("j", times);
-		data.addNode("k", state);
+		data.addNode("g", scrambleType);
+		data.addNode("h", scrambles);
+		data.addNode("i", userIDs);
+		data.addNode("j", averages);
+		data.addNode("k", times);
+		data.addNode("l", state);
 
 		packedData = data.toByteArray();
 	}
@@ -60,15 +66,15 @@ public class PacketPartyData extends Packet {
 		rounds = data.getInt("d");
 		rounds_counting = data.getInt("e");
 		name = data.getString("f");
-		scramble = data.getString("g");
-		int[] userIDs = data.getIntArray("h");
-		int[] averages = data.getIntArray("i");
-		int[] times = data.getIntArray("j");
-		state = data.getInt("k");
-		if (name == null || scramble == null || userIDs == null || averages == null || times == null) throw new MalformedPacketException();
-		if (userIDs.length == 0 || userIDs.length != averages.length) throw new MalformedPacketException();
-
+		scrambleType = data.getString("g");
+		String[] scrambles = data.getStringArray("h");
+		int[] userIDs = data.getIntArray("i");
+		int[] averages = data.getIntArray("j");
+		int[] times = data.getIntArray("k");
+		state = data.getInt("l");
+		if (name == null || scrambleType == null || userIDs == null || averages == null || scrambleType == null || times == null) throw new MalformedPacketException();
 		int time_num = times.length / userIDs.length;
+		if (userIDs.length == 0 || userIDs.length != averages.length || scrambles.length != time_num) throw new MalformedPacketException();
 
 		results = new PartyResultSet[userIDs.length];
 

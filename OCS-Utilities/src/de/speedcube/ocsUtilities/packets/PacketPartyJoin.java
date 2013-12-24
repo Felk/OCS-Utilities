@@ -5,6 +5,10 @@ import de.speedcube.ocsUtilities.DNFile.DNFile;
 public class PacketPartyJoin extends Packet {
 	public int partyID;
 
+	public PacketPartyJoin() {
+		channel = PARTY_CHANNEL;
+	}
+
 	@Override
 	public void packData() {
 		data = new DNFile("");

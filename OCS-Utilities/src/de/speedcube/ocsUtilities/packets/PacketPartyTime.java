@@ -6,6 +6,10 @@ public class PacketPartyTime extends Packet {
 	public int time;
 	public int partyID;
 
+	public PacketPartyTime() {
+		channel = PARTY_CHANNEL;
+	}
+	
 	@Override
 	public void packData() {
 		data = new DNFile("");

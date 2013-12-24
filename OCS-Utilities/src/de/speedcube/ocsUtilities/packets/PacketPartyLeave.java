@@ -2,18 +2,18 @@ package de.speedcube.ocsUtilities.packets;
 
 import de.speedcube.ocsUtilities.DNFile.DNFile;
 
-public class PacketPartyList extends Packet {
-	public int[] partyIDs;
+public class PacketPartyLeave extends Packet {
+	public int partyID;
 
-	public PacketPartyList() {
+	public PacketPartyLeave() {
 		channel = PARTY_CHANNEL;
 	}
-	
+
 	@Override
 	public void packData() {
 		data = new DNFile("");
 
-		data.addNode("a", partyIDs);
+		data.addNode("a", partyID);
 
 		packedData = data.toByteArray();
 	}
@@ -23,13 +23,12 @@ public class PacketPartyList extends Packet {
 		data = new DNFile("");
 		data.fromByteArray(packedData);
 
-		partyIDs = data.getIntArray("a");
-		if (partyIDs == null) throw new MalformedPacketException();
+		partyID = data.getInt("a");
 	}
 
 	@Override
 	public String getName() {
-		return "PartyList";
+		return "PartyLeave";
 	}
 
 }

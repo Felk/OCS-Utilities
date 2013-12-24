@@ -18,6 +18,7 @@ public abstract class Packet {
 	public static final int DEFAULT_CHANNEL = 0;
 	public static final int CHAT_CHANNEL = 1;
 	public static final int LOGIN_PAGE_CHANNEL = 2;
+	public static final int PARTY_CHANNEL = 3;
 
 	protected static ArrayList<Class<? extends Packet>> packets = new ArrayList<Class<? extends Packet>>();
 	protected static HashMap<Class<? extends Packet>, Integer> packetIdMap = new HashMap<Class<? extends Packet>, Integer>();
@@ -80,32 +81,46 @@ public abstract class Packet {
 	}
 
 	static {
-		registerPacket(PacketConnectionInfo.class);//has to be at position 0
+		// Connection Information always at position 0!
+		registerPacket(PacketConnectionInfo.class);
 
+		// System stuff
+		registerPacket(PacketSystemMessage.class);
+		registerPacket(PacketDisconnect.class);
+		
+		// Logging in/out
 		registerPacket(PacketSalt.class);
 		registerPacket(PacketSaltGet.class);
 		registerPacket(PacketLogin.class);
 		registerPacket(PacketLoginError.class);
 		registerPacket(PacketLoginSuccess.class);
+		registerPacket(PacketLogout.class);
+		
+		// Registration
+		registerPacket(PacketRegistration.class);
+		registerPacket(PacketRegistrationError.class);
+		registerPacket(PacketRegistrationSuccess.class);
+		
+		// Chat, Userlist, Profile
 		registerPacket(PacketUserlist.class);
 		registerPacket(PacketUserInfo.class);
 		registerPacket(PacketChat.class);
 		registerPacket(PacketChatBroadcast.class);
-		registerPacket(PacketRegistration.class);
-		registerPacket(PacketRegistrationError.class);
-		registerPacket(PacketRegistrationSuccess.class);
-		registerPacket(PacketLogout.class);
-		registerPacket(PacketDisconnect.class);
+		registerPacket(PacketChannelWhisper.class);
 		registerPacket(PacketChannelEnter.class);
-		registerPacket(PacketSystemMessage.class);
 		registerPacket(PacketProfileInfo.class);
+		
+		// Parties
 		registerPacket(PacketPartyCreate.class);
 		registerPacket(PacketPartyData.class);
 		registerPacket(PacketPartyList.class);
 		registerPacket(PacketPartyTime.class);
 		registerPacket(PacketPartyJoin.class);
+		registerPacket(PacketPartyLeave.class);
+		
+		
+		// experimental stuff
 		registerPacket(PacketSound.class);
-		registerPacket(PacketChannelWhisper.class);
 
 		//dumpIds();
 	}
