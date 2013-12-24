@@ -62,7 +62,7 @@ public class PacketPartyData extends Packet {
 
 		partyID = data.getInt("a");
 		ownerID = data.getInt("b");
-		type = data.getInt("c");
+		type = data.getByte("c");
 		rounds = data.getInt("d");
 		rounds_counting = data.getInt("e");
 		name = data.getString("f");
