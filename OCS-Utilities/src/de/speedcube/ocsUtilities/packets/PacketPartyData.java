@@ -23,21 +23,30 @@ public class PacketPartyData extends Packet {
 	public void packData() {
 		data = new DNFile("");
 
-		int time_num = 0;
-		if (results.length > 0) time_num = results[0].getTimes().length;
+		int[] userIDs;
+		int[] averages;
+		int[] times;
 
-		int[] userIDs = new int[results.length];
-		int[] averages = new int[results.length];
-		int[] times = new int[results.length * time_num];
+		if (results != null) {
+			int time_num = results[0].getTimes().length;
 
-		for (int i = 0; i < results.length; i++) {
-			PartyResultSet result = results[i];
-			userIDs[i] = result.getUserID();
-			averages[i] = result.getAverage();
-			int length = result.getTimes().length;
-			for (int j = 0; j < length; j++) {
-				times[i * length + j] = result.getTimes()[j];
+			userIDs = new int[results.length];
+			averages = new int[results.length];
+			times = new int[results.length * time_num];
+
+			for (int i = 0; i < results.length; i++) {
+				PartyResultSet result = results[i];
+				userIDs[i] = result.getUserID();
+				averages[i] = result.getAverage();
+				int length = result.getTimes().length;
+				for (int j = 0; j < length; j++) {
+					times[i * length + j] = result.getTimes()[j];
+				}
 			}
+		} else {
+			userIDs = null;
+			averages = null;
+			times = null;
 		}
 
 		data.addNode("a", partyID);
@@ -73,17 +82,23 @@ public class PacketPartyData extends Packet {
 		int[] averages = data.getIntArray("j");
 		int[] times = data.getIntArray("k");
 		state = data.getInt("l");
-		if (name == null || scrambleType == null || userIDs == null || averages == null || scrambleType == null || times == null) throw new MalformedPacketException();
-		int time_num = (userIDs.length == 0) ? 0 : times.length / userIDs.length;
-		if (userIDs.length == 0 || userIDs.length != averages.length || scrambles.length != time_num) throw new MalformedPacketException();
+		if (name == null || scrambleType == null) throw new MalformedPacketException();
 
-		results = new PartyResultSet[userIDs.length];
+		if (userIDs == null || averages == null || times == null) {
+			results = null;
+		} else {
+			int time_num = times.length / userIDs.length;
+			if (scrambles.length != time_num) throw new MalformedPacketException();
+			if (userIDs.length == 0 || userIDs.length != averages.length) throw new MalformedPacketException();
+			results = new PartyResultSet[userIDs.length];
 
-		for (int i = 0; i < userIDs.length; i++) {
-			int[] ts = new int[time_num];
-			System.arraycopy(times, i * time_num, ts, 0, time_num);
-			results[i] = new PartyResultSet(userIDs[i], ts, averages[i]);
+			for (int i = 0; i < userIDs.length; i++) {
+				int[] ts = new int[time_num];
+				System.arraycopy(times, i * time_num, ts, 0, time_num);
+				results[i] = new PartyResultSet(userIDs[i], ts, averages[i]);
+			}
 		}
+		this.scrambles = scrambles;
 
 	}
 
