@@ -18,12 +18,13 @@ public class PacketPartyData extends Packet {
 	public PacketPartyData() {
 		channel = PARTY_CHANNEL;
 	}
-	
+
 	@Override
 	public void packData() {
 		data = new DNFile("");
 
-		int time_num = results[0].getTimes().length;
+		int time_num = 0;
+		if (results.length > 0) time_num = results[0].getTimes().length;
 
 		int[] userIDs = new int[results.length];
 		int[] averages = new int[results.length];
@@ -73,7 +74,7 @@ public class PacketPartyData extends Packet {
 		int[] times = data.getIntArray("k");
 		state = data.getInt("l");
 		if (name == null || scrambleType == null || userIDs == null || averages == null || scrambleType == null || times == null) throw new MalformedPacketException();
-		int time_num = times.length / userIDs.length;
+		int time_num = (userIDs.length == 0) ? 0 : times.length / userIDs.length;
 		if (userIDs.length == 0 || userIDs.length != averages.length || scrambles.length != time_num) throw new MalformedPacketException();
 
 		results = new PartyResultSet[userIDs.length];
