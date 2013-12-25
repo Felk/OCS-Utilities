@@ -501,7 +501,7 @@ public class DNFile {
 	public String[] getStringArray(String name) {
 		DNNode node = nodePath.getNodePath(name);
 		if (node == null) return null;
-		if (node.length >= 1) {
+		if (node.length >= 0) {
 			if (node.typ == DNHelper.STRING && node.value instanceof String[]) return (String[]) node.value;
 			else if (node.typ == DNHelper.STRING && node.value instanceof String) { return new String[] { (String) node.value }; }
 		}
