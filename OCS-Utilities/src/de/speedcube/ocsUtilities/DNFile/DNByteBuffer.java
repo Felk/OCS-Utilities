@@ -44,11 +44,11 @@ public class DNByteBuffer {
 
 	public String readString() {
 		int length = byteBuffer.getInt();
-		String text = "";
+		StringBuilder text = new StringBuilder();
 		for (int i = 0; i < length; i++) {
-			text += byteBuffer.getChar();
+			text.append(byteBuffer.getChar());
 		}
-		return text;
+		return text.toString();
 	}
 
 	public void writeInt(int value) {
@@ -84,9 +84,13 @@ public class DNByteBuffer {
 	}
 
 	public void writeString(String value) {
-		byteBuffer.putInt(value.length());
-		for (int i = 0; i < value.length(); i++) {
-			byteBuffer.putChar(value.charAt(i));
+		if (value != null) {
+			byteBuffer.putInt(value.length());
+			for (int i = 0; i < value.length(); i++) {
+				byteBuffer.putChar(value.charAt(i));
+			}
+		} else {
+			byteBuffer.putInt(0);
 		}
 	}
 
