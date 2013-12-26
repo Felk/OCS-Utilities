@@ -16,6 +16,7 @@ public class PacketPartyData extends Packet {
 	public String[] scrambles;
 	public PartyResultSet[] results;
 	public int state;
+
 	//public int[] users;
 
 	public PacketPartyData() {
@@ -32,8 +33,10 @@ public class PacketPartyData extends Packet {
 
 		if (results != null) {
 			int time_num = 0;
-			for (PartyResultSet prs : results)
+			for (PartyResultSet prs : results) {
+				if (prs.getTimes() == null) continue;
 				time_num = Math.max(time_num, prs.getTimes().length);
+			}
 
 			userIDs = new int[results.length];
 			averages = new int[results.length];
@@ -43,9 +46,13 @@ public class PacketPartyData extends Packet {
 				PartyResultSet result = results[i];
 				userIDs[i] = result.getUserID();
 				averages[i] = result.getAverage();
-				int length = result.getTimes().length;
-				for (int j = 0; j < length; j++) {
-					times[i * length + j] = result.getTimes()[j];
+				if (result.getTimes() == null)
+					times = null;
+				else {
+					int length = result.getTimes().length;
+					for (int j = 0; j < length; j++) {
+						times[i * length + j] = result.getTimes()[j];
+					}
 				}
 			}
 		} else {
