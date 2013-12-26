@@ -21,7 +21,7 @@ public class PacketPartyData extends Packet {
 
 	@Override
 	public void packData() {
-		data = new DNFile("");
+		data = new DNFile("test.txt");
 
 		int[] userIDs;
 		int[] averages;
@@ -62,6 +62,7 @@ public class PacketPartyData extends Packet {
 		data.addNode("k", times);
 		data.addNode("l", state);
 
+		data.save();
 		packedData = data.toByteArray();
 	}
 
