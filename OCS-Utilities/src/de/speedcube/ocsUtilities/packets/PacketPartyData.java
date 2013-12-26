@@ -101,16 +101,20 @@ public class PacketPartyData extends Packet {
 		//users = data.getIntArray("m");
 		if (name == null || scrambleType == null || userIDs == null || averages == null) throw new MalformedPacketException();
 
-		int time_num = (userIDs.length <= 0) ? 0 : times.length / userIDs.length;
+		int time_num = (userIDs.length <= 0 || times == null) ? 0 : times.length / userIDs.length;
 		if (userIDs.length != averages.length) throw new MalformedPacketException();
 		results = new PartyResultSet[userIDs.length];
 
 		for (int i = 0; i < userIDs.length; i++) {
-			int[] ts = new int[time_num];
-			System.arraycopy(times, i * time_num, ts, 0, time_num);
-			results[i] = new PartyResultSet(userIDs[i], ts, averages[i]);
+			if (times != null) {
+				int[] ts = new int[time_num];
+				System.arraycopy(times, i * time_num, ts, 0, time_num);
+				results[i] = new PartyResultSet(userIDs[i], ts, averages[i]);
+			} else {
+				results[i] = new PartyResultSet(userIDs[i], null, averages[i]);
+			}
 		}
-		
+
 		this.scrambles = scrambles;
 
 	}
