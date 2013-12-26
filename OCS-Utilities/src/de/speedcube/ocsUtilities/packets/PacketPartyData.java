@@ -31,34 +31,33 @@ public class PacketPartyData extends Packet {
 		int[] averages;
 		int[] times;
 
-		if (results != null) {
-			int time_num = 0;
-			for (PartyResultSet prs : results) {
-				if (prs.getTimes() == null) continue;
-				time_num = Math.max(time_num, prs.getTimes().length);
-			}
+		if (results == null) return;
+		int time_num = 0;
+		for (PartyResultSet prs : results) {
+			if (prs.getTimes() == null) continue;
+			time_num = Math.max(time_num, prs.getTimes().length);
+		}
 
-			userIDs = new int[results.length];
-			averages = new int[results.length];
-			times = new int[results.length * time_num];
+		userIDs = new int[results.length];
+		averages = new int[results.length];
+		times = new int[results.length * time_num];
 
-			for (int i = 0; i < results.length; i++) {
-				PartyResultSet result = results[i];
-				userIDs[i] = result.getUserID();
-				averages[i] = result.getAverage();
-				if (result.getTimes() == null)
+		for (int i = 0; i < results.length; i++) {
+			PartyResultSet result = results[i];
+			userIDs[i] = result.getUserID();
+			averages[i] = result.getAverage();
+			if (result.getTimes() == null) {
+				if (i == 0) {
 					times = null;
-				else {
-					int length = result.getTimes().length;
-					for (int j = 0; j < length; j++) {
-						times[i * length + j] = result.getTimes()[j];
-					}
+					break;
+				}
+				continue;
+			} else {
+				int length = result.getTimes().length;
+				for (int j = 0; j < length; j++) {
+					times[i * length + j] = result.getTimes()[j];
 				}
 			}
-		} else {
-			userIDs = null;
-			averages = null;
-			times = null;
 		}
 
 		data.addInt("a", partyID);
@@ -74,11 +73,6 @@ public class PacketPartyData extends Packet {
 		data.addInt("k", times);
 		data.addInt("l", state);
 		//data.addInt("m", users);
-
-		if (userIDs == null) {
-			System.out.println("Users in party: null");
-		} else
-			System.out.println("Users in party: " + userIDs.length);
 
 		packedData = data.toByteArray();
 	}
@@ -105,21 +99,18 @@ public class PacketPartyData extends Packet {
 		int[] times = data.getIntArray("k");
 		state = data.getInt("l");
 		//users = data.getIntArray("m");
-		if (name == null || scrambleType == null /*|| users == null*/) throw new MalformedPacketException();
+		if (name == null || scrambleType == null || userIDs == null || averages == null) throw new MalformedPacketException();
 
-		if (userIDs == null || averages == null || times == null) {
-			results = null;
-		} else {
-			int time_num = (userIDs.length <= 0) ? 0 : times.length / userIDs.length;
-			if (userIDs.length != averages.length) throw new MalformedPacketException();
-			results = new PartyResultSet[userIDs.length];
+		int time_num = (userIDs.length <= 0) ? 0 : times.length / userIDs.length;
+		if (userIDs.length != averages.length) throw new MalformedPacketException();
+		results = new PartyResultSet[userIDs.length];
 
-			for (int i = 0; i < userIDs.length; i++) {
-				int[] ts = new int[time_num];
-				System.arraycopy(times, i * time_num, ts, 0, time_num);
-				results[i] = new PartyResultSet(userIDs[i], ts, averages[i]);
-			}
+		for (int i = 0; i < userIDs.length; i++) {
+			int[] ts = new int[time_num];
+			System.arraycopy(times, i * time_num, ts, 0, time_num);
+			results[i] = new PartyResultSet(userIDs[i], ts, averages[i]);
 		}
+		
 		this.scrambles = scrambles;
 
 	}
