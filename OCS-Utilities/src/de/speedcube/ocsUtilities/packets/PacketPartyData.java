@@ -104,7 +104,7 @@ public class PacketPartyData extends Packet {
 			results = null;
 		} else {
 			int time_num = (userIDs.length <= 0) ? 0 : times.length / userIDs.length;
-			if (userIDs.length == 0 || userIDs.length != averages.length) throw new MalformedPacketException();
+			if (userIDs.length != averages.length) throw new MalformedPacketException();
 			results = new PartyResultSet[userIDs.length];
 
 			for (int i = 0; i < userIDs.length; i++) {
