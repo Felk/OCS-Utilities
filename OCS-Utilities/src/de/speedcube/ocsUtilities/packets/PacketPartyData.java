@@ -103,7 +103,7 @@ public class PacketPartyData extends Packet {
 		if (userIDs == null || averages == null || times == null) {
 			results = null;
 		} else {
-			int time_num = times.length / userIDs.length;
+			int time_num = (userIDs.length <= 0) ? 0 : times.length / userIDs.length;
 			if (scrambles.length != time_num) throw new MalformedPacketException();
 			if (userIDs.length == 0 || userIDs.length != averages.length) throw new MalformedPacketException();
 			results = new PartyResultSet[userIDs.length];
