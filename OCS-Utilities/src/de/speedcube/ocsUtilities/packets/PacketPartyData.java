@@ -1,7 +1,9 @@
 package de.speedcube.ocsUtilities.packets;
 
+import java.io.IOException;
+
 import de.speedcube.ocsUtilities.PartyResultSet;
-import de.speedcube.ocsUtilities.DNFile.DNFile;
+import de.nerogar.DNFileSystem.DNFile;
 
 public class PacketPartyData extends Packet {
 	public int partyID;
@@ -21,7 +23,7 @@ public class PacketPartyData extends Packet {
 
 	@Override
 	public void packData() {
-		data = new DNFile("test.txt");
+		data = new DNFile();
 
 		int[] userIDs;
 		int[] averages;
@@ -49,27 +51,30 @@ public class PacketPartyData extends Packet {
 			times = null;
 		}
 
-		data.addNode("a", partyID);
-		data.addNode("b", ownerID);
-		data.addNode("c", type);
-		data.addNode("d", rounds);
-		data.addNode("e", rounds_counting);
-		data.addNode("f", name);
-		data.addNode("g", scrambleType);
-		data.addNode("h", scrambles);
-		data.addNode("i", userIDs);
-		data.addNode("j", averages);
-		data.addNode("k", times);
-		data.addNode("l", state);
+		data.addInt("a", partyID);
+		data.addInt("b", ownerID);
+		data.addByte("c", type);
+		data.addInt("d", rounds);
+		data.addInt("e", rounds_counting);
+		data.addString("f", name);
+		data.addString("g", scrambleType);
+		data.addString("h", scrambles);
+		data.addInt("i", userIDs);
+		data.addInt("j", averages);
+		data.addInt("k", times);
+		data.addInt("l", state);
 
-		data.save();
 		packedData = data.toByteArray();
 	}
 
 	@Override
 	public void unpack() throws MalformedPacketException {
-		data = new DNFile("");
-		data.fromByteArray(packedData);
+		data = new DNFile();
+		try {
+			data.fromByteArray(packedData);
+		} catch (IOException e) {
+			throw new MalformedPacketException();
+		}
 
 		partyID = data.getInt("a");
 		ownerID = data.getInt("b");

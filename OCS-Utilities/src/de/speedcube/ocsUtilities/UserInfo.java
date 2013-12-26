@@ -1,6 +1,6 @@
 package de.speedcube.ocsUtilities;
 
-import de.speedcube.ocsUtilities.DNFile.DNFile;
+import de.nerogar.DNFileSystem.DNFile;
 
 public class UserInfo {
 	public int userID;
@@ -30,12 +30,12 @@ public class UserInfo {
 	}
 
 	public DNFile toDNFile() {
-		DNFile file = new DNFile("");
-		file.addNode("id", userID);
-		file.addNode("name", username);
-		file.addNode("col", color);
-		file.addNode("rank", rank);
-		file.addNode("status", status);
+		DNFile file = new DNFile();
+		file.addInt("id", userID);
+		file.addString("name", username);
+		file.addInt("col", color);
+		file.addInt("rank", rank);
+		file.addString("status", status);
 		return file;
 	}
 

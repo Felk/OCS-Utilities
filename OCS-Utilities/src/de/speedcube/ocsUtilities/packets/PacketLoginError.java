@@ -1,6 +1,8 @@
 package de.speedcube.ocsUtilities.packets;
 
-import de.speedcube.ocsUtilities.DNFile.DNFile;
+import java.io.IOException;
+
+import de.nerogar.DNFileSystem.DNFile;
 
 public class PacketLoginError extends Packet {
 	public String msg;
@@ -11,18 +13,22 @@ public class PacketLoginError extends Packet {
 
 	@Override
 	public void packData() {
-		data = new DNFile("");
+		data = new DNFile();
 		//username = GameOptions.instance.getOption("playerName");
 
-		data.addNode("a", msg);
+		data.addString("a", msg);
 
 		packedData = data.toByteArray();
 	}
 
 	@Override
-	public void unpack() {
-		data = new DNFile("");
-		data.fromByteArray(packedData);
+	public void unpack() throws MalformedPacketException {
+		data = new DNFile();
+		try {
+			data.fromByteArray(packedData);
+		} catch (IOException e) {
+			throw new MalformedPacketException();
+		}
 
 		msg = data.getString("a");
 	}

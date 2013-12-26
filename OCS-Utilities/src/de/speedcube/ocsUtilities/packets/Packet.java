@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.speedcube.ocsUtilities.DNFile.DNFile;
+import de.nerogar.DNFileSystem.DNFile;
 
 public abstract class Packet {
 

@@ -1,6 +1,8 @@
 package de.speedcube.ocsUtilities.packets;
 
-import de.speedcube.ocsUtilities.DNFile.DNFile;
+import java.io.IOException;
+
+import de.nerogar.DNFileSystem.DNFile;
 
 public class PacketPartyCreate extends Packet {
 	public byte type;
@@ -12,24 +14,28 @@ public class PacketPartyCreate extends Packet {
 	public PacketPartyCreate() {
 		channel = PARTY_CHANNEL;
 	}
-	
+
 	@Override
 	public void packData() {
-		data = new DNFile("");
+		data = new DNFile();
 
-		data.addNode("a", type);
-		data.addNode("b", rounds);
-		data.addNode("c", rounds_counting);
-		data.addNode("d", name);
-		data.addNode("e", scrambleType);
+		data.addByte("a", type);
+		data.addInt("b", rounds);
+		data.addInt("c", rounds_counting);
+		data.addString("d", name);
+		data.addString("e", scrambleType);
 
 		packedData = data.toByteArray();
 	}
 
 	@Override
 	public void unpack() throws MalformedPacketException {
-		data = new DNFile("");
-		data.fromByteArray(packedData);
+		data = new DNFile();
+		try {
+			data.fromByteArray(packedData);
+		} catch (IOException e) {
+			throw new MalformedPacketException();
+		}
 
 		type = data.getByte("a");
 		rounds = data.getInt("b");

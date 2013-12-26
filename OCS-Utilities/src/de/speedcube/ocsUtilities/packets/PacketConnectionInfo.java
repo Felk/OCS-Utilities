@@ -1,23 +1,29 @@
 package de.speedcube.ocsUtilities.packets;
 
-import de.speedcube.ocsUtilities.DNFile.DNFile;
+import java.io.IOException;
+
+import de.nerogar.DNFileSystem.DNFile;
 
 public class PacketConnectionInfo extends Packet {
 	public String version;
 
 	@Override
 	public void packData() {
-		data = new DNFile("");
+		data = new DNFile();
 
-		data.addNode("a", version);
+		data.addString("a", version);
 
 		packedData = data.toByteArray();
 	}
 
 	@Override
-	public void unpack() {
-		data = new DNFile("");
-		data.fromByteArray(packedData);
+	public void unpack() throws MalformedPacketException {
+		data = new DNFile();
+		try {
+			data.fromByteArray(packedData);
+		} catch (IOException e) {
+			throw new MalformedPacketException();
+		}
 
 		version = data.getString("a");
 	}

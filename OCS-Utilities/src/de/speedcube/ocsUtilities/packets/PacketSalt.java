@@ -1,24 +1,30 @@
 package de.speedcube.ocsUtilities.packets;
 
-import de.speedcube.ocsUtilities.DNFile.DNFile;
+import java.io.IOException;
+
+import de.nerogar.DNFileSystem.DNFile;
 
 public class PacketSalt extends Packet {
 	public String salt;
 
 	@Override
 	public void packData() {
-		data = new DNFile("");
+		data = new DNFile();
 		//username = GameOptions.instance.getOption("playerName");
 
-		data.addNode("a", salt);
+		data.addString("a", salt);
 		
 		packedData = data.toByteArray();
 	}
 
 	@Override
-	public void unpack() {
-		data = new DNFile("");
-		data.fromByteArray(packedData);
+	public void unpack() throws MalformedPacketException {
+		data = new DNFile();
+		try {
+			data.fromByteArray(packedData);
+		} catch (IOException e) {
+			throw new MalformedPacketException();
+		}
 
 		salt = data.getString("a");
 	}

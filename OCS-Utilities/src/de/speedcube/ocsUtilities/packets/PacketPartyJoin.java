@@ -1,6 +1,8 @@
 package de.speedcube.ocsUtilities.packets;
 
-import de.speedcube.ocsUtilities.DNFile.DNFile;
+import java.io.IOException;
+
+import de.nerogar.DNFileSystem.DNFile;
 
 public class PacketPartyJoin extends Packet {
 	public int partyID;
@@ -11,17 +13,21 @@ public class PacketPartyJoin extends Packet {
 
 	@Override
 	public void packData() {
-		data = new DNFile("");
+		data = new DNFile();
 
-		data.addNode("a", partyID);
+		data.addInt("a", partyID);
 
 		packedData = data.toByteArray();
 	}
 
 	@Override
 	public void unpack() throws MalformedPacketException {
-		data = new DNFile("");
-		data.fromByteArray(packedData);
+		data = new DNFile();
+		try {
+			data.fromByteArray(packedData);
+		} catch (IOException e) {
+			throw new MalformedPacketException();
+		}
 
 		partyID = data.getInt("a");
 	}
