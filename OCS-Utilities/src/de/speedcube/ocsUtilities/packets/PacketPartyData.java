@@ -1,6 +1,7 @@
 package de.speedcube.ocsUtilities.packets;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import de.speedcube.ocsUtilities.PartyResultSet;
 import de.nerogar.DNFileSystem.DNFile;
@@ -47,10 +48,7 @@ public class PacketPartyData extends Packet {
 			userIDs[i] = result.getUserID();
 			averages[i] = result.getAverage();
 			if (result.getTimes() == null) {
-				if (i == 0) {
-					times = null;
-					break;
-				}
+				if (i == 0) times = null;
 				continue;
 			} else {
 				int length = result.getTimes().length;
@@ -73,6 +71,8 @@ public class PacketPartyData extends Packet {
 		data.addInt("k", times);
 		data.addInt("l", state);
 		//data.addInt("m", users);
+
+		System.out.println("Packet has users " + Arrays.toString(userIDs));
 
 		packedData = data.toByteArray();
 	}

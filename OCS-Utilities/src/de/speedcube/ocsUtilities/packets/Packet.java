@@ -117,6 +117,7 @@ public abstract class Packet {
 		registerPacket(PacketPartyTime.class);
 		registerPacket(PacketPartyJoin.class);
 		registerPacket(PacketPartyLeave.class);
+		registerPacket(PacketPartyStart.class);
 		
 		
 		// experimental stuff
