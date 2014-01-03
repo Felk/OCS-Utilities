@@ -7,13 +7,17 @@ import de.nerogar.DNFileSystem.DNFile;
 public class PacketSalt extends Packet {
 	public String salt;
 
+	public PacketSalt() {
+		channel = LOGIN_PAGE_CHANNEL;
+	}
+
 	@Override
 	public void packData() {
 		data = new DNFile();
 		//username = GameOptions.instance.getOption("playerName");
 
 		data.addString("a", salt);
-		
+
 		packedData = data.toByteArray();
 	}
 
