@@ -108,6 +108,7 @@ public abstract class Packet {
 		registerPacket(PacketChatBroadcast.class);
 		registerPacket(PacketChannelWhisper.class);
 		registerPacket(PacketChannelEnter.class);
+		registerPacket(PacketChannelLeave.class);
 		registerPacket(PacketProfileInfo.class);
 		
 		// Parties
