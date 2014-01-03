@@ -17,6 +17,7 @@ public class PacketPartyData extends Packet {
 	public String[] scrambles;
 	public PartyResultSet[] results;
 	public int state;
+	public int round;
 
 	//public int[] users;
 
@@ -70,9 +71,7 @@ public class PacketPartyData extends Packet {
 		data.addInt("j", averages);
 		data.addInt("k", times);
 		data.addInt("l", state);
-		//data.addInt("m", users);
-
-		System.out.println("Packet has users " + Arrays.toString(userIDs));
+		data.addInt("m", round);
 
 		packedData = data.toByteArray();
 	}
@@ -98,7 +97,7 @@ public class PacketPartyData extends Packet {
 		int[] averages = data.getIntArray("j");
 		int[] times = data.getIntArray("k");
 		state = data.getInt("l");
-		//users = data.getIntArray("m");
+		round = data.getInt("m");
 		if (name == null || scrambleType == null || userIDs == null || averages == null) throw new MalformedPacketException();
 
 		int time_num = (userIDs.length <= 0 || times == null) ? 0 : times.length / userIDs.length;
