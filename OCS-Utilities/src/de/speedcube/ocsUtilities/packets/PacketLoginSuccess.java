@@ -8,6 +8,10 @@ public class PacketLoginSuccess extends Packet {
 	public String username;
 	public int userID;
 
+	public PacketLoginSuccess() {
+		channel = LOGIN_PAGE_CHANNEL;
+	}
+
 	@Override
 	public void packData() {
 		data = new DNFile();

@@ -11,6 +11,7 @@ public class PacketUserInfo extends Packet {
 	ArrayList<UserInfo> userInfos;
 
 	public PacketUserInfo() {
+		channel = DEFAULT_CHANNEL;
 		userInfos = new ArrayList<UserInfo>();
 	}
 

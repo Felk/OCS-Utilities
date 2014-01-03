@@ -7,6 +7,10 @@ import de.nerogar.DNFileSystem.DNFile;
 public class PacketUserlist extends Packet {
 	public int[] userIds;
 
+	public PacketUserlist() {
+		channel = DEFAULT_CHANNEL;
+	}
+
 	@Override
 	public void packData() {
 		data = new DNFile();
