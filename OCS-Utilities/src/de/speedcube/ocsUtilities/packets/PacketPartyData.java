@@ -1,7 +1,6 @@
 package de.speedcube.ocsUtilities.packets;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import de.speedcube.ocsUtilities.PartyResultSet;
 import de.nerogar.DNFileSystem.DNFile;
