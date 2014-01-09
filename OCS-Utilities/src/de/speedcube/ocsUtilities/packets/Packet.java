@@ -126,4 +126,8 @@ public abstract class Packet {
 
 		//dumpIds();
 	}
+
+	public static int getPacketSize() {
+		return packets.size();
+	}
 }

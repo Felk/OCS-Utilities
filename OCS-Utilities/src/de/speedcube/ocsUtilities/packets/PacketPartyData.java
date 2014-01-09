@@ -3,6 +3,7 @@ package de.speedcube.ocsUtilities.packets;
 import java.io.IOException;
 
 import de.speedcube.ocsUtilities.PartyResultSet;
+import de.speedcube.ocsUtilities.PartyStates;
 import de.nerogar.DNFileSystem.DNFile;
 
 public class PacketPartyData extends Packet {
@@ -41,16 +42,21 @@ public class PacketPartyData extends Packet {
 
 		userIDs = new int[results.length];
 		averages = new int[results.length];
-		times = new int[results.length * time_num];
+		if (state == PartyStates.OPEN) {
+			times = null;
+		} else {
+			times = new int[results.length * time_num];
+		}
 
 		for (int i = 0; i < results.length; i++) {
 			PartyResultSet result = results[i];
 			userIDs[i] = result.getUserID();
 			averages[i] = result.getAverage();
+			//if (result.getTimes() == null) {
+			//if (i == 0) times = null;
 			if (result.getTimes() == null) {
-				if (i == 0) times = null;
 				continue;
-			} else {
+			} else if (times != null) {
 				int length = result.getTimes().length;
 				for (int j = 0; j < length; j++) {
 					times[i * length + j] = result.getTimes()[j];
